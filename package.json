@@ -11,8 +11,9 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.3",
-    "react-bootstrap": "^2.10.5",
+    "firebase": "^11.5.0",
     "react": "^19.0.0",
+    "react-bootstrap": "^2.10.5",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {

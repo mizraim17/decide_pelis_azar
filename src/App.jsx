@@ -31,15 +31,20 @@ function App() {
    useEffect(() => {
       const fetchData = async () => {
         try {
-          const respuesta = await    fetch(`https://wepapp-angular-default-rtdb.firebaseio.com/pelis.json`)
-          const arraypelis = await respuesta.json();
-
-         
+          const respuesta = await fetch(`https://wepapp-angular-default-rtdb.firebaseio.com/pelis.json`)
           
-          setArrpelis(arraypelis);
+          const objetoDeObjetos = await respuesta.json() ;
+
+          const arregloDeObjetos = Object.keys(objetoDeObjetos).map((id) => ({
+            id,
+            ...objetoDeObjetos[id],
+          }));
+
+            
+          setArrpelis (arregloDeObjetos);
           setCargando(false);
 
-           console.log("arraypelis ---",arraypelis);
+         
           
         } catch (error) {
           setError(error);
@@ -48,31 +53,16 @@ function App() {
       };
     fetchData();
 
-    const timeoutId = setTimeout(() => {
-      printArr()
-    }, 3000);
-
-    return () => {
-      clearTimeout(timeoutId);
-    };
+    
   }, []);
 
     
 
   let printArr = () => {
 
-  //   console.log( "entro a imprimir arrays")
-
-  //   let  miz=[]
+ 
 
  
-  // let valores = Object.values(arrpelis);  
-  //   for (let i = 0; i < valores.length; i++){
-  //         console.log("iiii ------",i)
-  //     miz.push(valores[i][0]);
-  //   }
-
-    // setArrFin(arrpelis)
     console.log("miz ------",typeof( arrpelis))
   
   }
@@ -100,14 +90,21 @@ function App() {
 
     .then((res) => res.json())
     .catch((error) => console.error("Error:", error))
-    .then((response) =>  console.log("Success:", response));
-        printArr()
+      .then((response) =>
+      
+      {
+       useEffect
+        console.log("Success:", response)
+        })
+        
+         
   }
   
   
-  const ranPeli = () => {
+  const randomPeli = () => {
        
-      setnumRan(Math.floor(Math.random() * (arrpelis.length)))
+ 
+    setnumRan(Math.floor(Math.random() * (arrpelis.length)))
       
       console.log(numRan)
   };
@@ -175,7 +172,7 @@ function App() {
                   {
                     arrpelis == ''
                       ?console.log("nada en arrpelis ")
-                      : console.log('si hay algo arrpelis')
+                      : console.log('si hay algo arrpelis', arrpelis['id'])
                     
                   }
                     {
@@ -183,16 +180,18 @@ function App() {
                     arrpelis != "No hay resultados. </br> "
                     && arrpelis != []
                       ? 
-                     
-                     
-                     arrpelis.map((el) => {
 
+                      
+                     
+                     arrpelis.map((el,index) => {
+
+                       
                        return(
-                        <Card.Text  className='ele-list'>
+                        <Card.Text  className='ele-list' key={index}>
                             {el.nombre} -
                           {el.plataforma} 
                           {
-                            console.log(el.nombre)
+                            console.log('el',el)
                             
                           }
                            </Card.Text>
@@ -220,7 +219,7 @@ function App() {
 					             
           <Col  xs sm md={4} lg={4} xl={4} xxl={4} >
                <h2>Elegir al azar</h2>
-            <Button variant="success" onClick={ranPeli}  >
+            <Button variant="success" onClick={randomPeli}  >
               aleatorio
             </Button>
           </Col>
