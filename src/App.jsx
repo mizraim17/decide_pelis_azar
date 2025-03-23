@@ -57,15 +57,24 @@ function App() {
   }, []);
 
     
-
-  let printArr = () => {
-
- 
-
- 
-    console.log("miz ------",typeof( arrpelis))
-  
+  const eliminarPeli = async (id) => {
+  try {
+    const respuesta = await fetch(`https://wepapp-angular-default-rtdb.firebaseio.com/pelis/${id}.json`, {
+      method: 'DELETE',
+    });
+    if (respuesta.ok) {
+        
+      
+      console.log('Registro eliminado con éxito');
+           useEffect
+    } else {
+      console.error('Error al eliminar el registro');
+    }
+  } catch (error) {
+    console.error(error);
   }
+};
+ 
 
   let agregarPeli = () => {
      
@@ -96,10 +105,8 @@ function App() {
        useEffect
         console.log("Success:", response)
         })
-        
          
   }
-  
   
   const randomPeli = () => {
        
@@ -147,17 +154,11 @@ function App() {
                 </Form.Group>
 
              
-            <Button onClick={agregarPeli}  >
+            <Button onClick={agregarPeli} >
                 Agregar peli   
             </Button>
             </Form>
-
-              
-             
-            
-            <Button onClick={printArr}  >
-              Actualizar lista 
-              </Button>
+      
             </Col>
           
           <Col xs sm md={8} lg={8} xl={8} >
@@ -170,22 +171,13 @@ function App() {
                       Lista de pelis
                   </span>
                 </Card.Title>
-              
-                < >
-                  {
-                    arrpelis == ''
-                      ?console.log("nada en arrpelis ")
-                      : console.log('si hay algo arrpelis', arrpelis['id'])
-                    
-                  }
+                   
                     {
          
                     arrpelis != "No hay resultados. </br> "
                     && arrpelis != []
-                      ? 
-
-                      
-                     
+                    ? 
+                    
                      arrpelis.map((el,index) => {
 
                        
@@ -196,7 +188,11 @@ function App() {
                             {el.plataforma}                
                           </Card.Text>
                          
-                           <Button className='ps-2' variant="danger">
+                           <Button className='ps-2  '   variant="danger"
+                             onClick={
+                               () => eliminarPeli(el.id)}
+                           >
+                      
                              Eliminar
                            </Button>
                         </div>
@@ -207,7 +203,7 @@ function App() {
                      
                       : "nada"
                     }   
-                </ >
+              
           
               </Card.Body>
             </Card>
@@ -223,7 +219,8 @@ function App() {
 				<Row    >
 					             
           <Col  xs sm md={4} lg={4} xl={4} xxl={4} >
-               <h2>Elegir al azar</h2>
+            <h2>Elegir al azar</h2>
+            
             <Button variant="success" onClick={randomPeli}  >
               aleatorio
             </Button>
