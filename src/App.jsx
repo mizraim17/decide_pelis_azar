@@ -106,7 +106,10 @@ function App() {
  
     setnumRan(Math.floor(Math.random() * (arrpelis.length)))
       
-      console.log(numRan)
+    console.log(Math.floor(Math.random() * (arrpelis.length)))
+    
+    console.log('arrpelis[0]',arrpelis[0]);
+    
   };
   
     if (cargando) {
@@ -186,15 +189,17 @@ function App() {
                      arrpelis.map((el,index) => {
 
                        
-                       return(
-                        <Card.Text  className='ele-list' key={index}>
+                       return (
+                        <div className="d-flex justify-content-between">
+                          <Card.Text  className='ele-list' key={index}>
                             {el.nombre} -
-                          {el.plataforma} 
-                          {
-                            console.log('el',el)
-                            
-                          }
-                           </Card.Text>
+                            {el.plataforma}                
+                          </Card.Text>
+                         
+                           <Button className='ps-2' variant="danger">
+                             Eliminar
+                           </Button>
+                        </div>
                        )
                       })
                      
@@ -231,7 +236,12 @@ function App() {
           
             <p className='peli-elegida'>
           
-              {arrpelis[numRan]}
+              {
+                numRan?arrpelis[numRan]['nombre']:
+                <span>nada</span>
+              
+              
+              }
             </p>
             
           </Col>
