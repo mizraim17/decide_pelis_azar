@@ -27,9 +27,8 @@ function App() {
     
   };
   
- 
    useEffect(() => {
-      const fetchData = async () => {
+      const obtenerDatos = async () => {
         try {
           const respuesta = await fetch(`https://wepapp-angular-default-rtdb.firebaseio.com/pelis.json`)
           
@@ -40,7 +39,6 @@ function App() {
             ...objetoDeObjetos[id],
           }));
 
-            
           setArrpelis (arregloDeObjetos);
           setCargando(false);
 
@@ -51,11 +49,26 @@ function App() {
           setCargando(false);
         }
       };
-    fetchData();
-
-    
+    obtenerDatos();
   }, []);
 
+
+    const obtenerDatos = async () => {
+    try {
+      const respuesta = await fetch('https://wepapp-angular-default-rtdb.firebaseio.com/pelis.json');
+     
+       const objetoDeObjetos = await respuesta.json() ;
+
+          const arregloDeObjetos = Object.keys(objetoDeObjetos).map((id) => ({
+            id,
+            ...objetoDeObjetos[id],
+          }));
+      
+      setArrpelis(arregloDeObjetos);
+    } catch (error) {
+      console.error(error);
+    }
+  };
     
   const eliminarPeli = async (id) => {
   try {
@@ -66,7 +79,7 @@ function App() {
         
       
       console.log('Registro eliminado con éxito');
-           useEffect
+              obtenerDatos()
     } else {
       console.error('Error al eliminar el registro');
     }
@@ -74,11 +87,9 @@ function App() {
     console.error(error);
   }
 };
- 
 
   let agregarPeli = () => {
      
-
     let data = 
     {
       nombre: ` ${nomPeli}`,
@@ -102,7 +113,7 @@ function App() {
       .then((response) =>
       
       {
-       useEffect
+        obtenerDatos()
         console.log("Success:", response)
         })
          
@@ -111,11 +122,13 @@ function App() {
   const randomPeli = () => {
        
  
-    setnumRan(Math.floor(Math.random() * (arrpelis.length)))
+    setnumRan(  Math.floor(Math.random() * (arrpelis.length)))
       
-    console.log(Math.floor(Math.random() * (arrpelis.length)))
+    console.log( "tamaño array" ,arrpelis.length)
+    console.log( "numero aleatorio" ,numRan)
     
-    console.log('arrpelis[0]',arrpelis[0]);
+    console.log(' arrpelis',arrpelis);
+    console.log('elemento aleatorio',arrpelis[numRan]['nombre']);
     
   };
   
@@ -171,38 +184,33 @@ function App() {
                       Lista de pelis
                   </span>
                 </Card.Title>
-                   
-                    {
-         
+              
+                  {
                     arrpelis != "No hay resultados. </br> "
                     && arrpelis != []
-                    ? 
-                    
-                     arrpelis.map((el,index) => {
+                    ?                     
+                      arrpelis.map((el,index) => {
 
-                       
-                       return (
-                        <div className="d-flex justify-content-between">
-                          <Card.Text  className='ele-list' key={index}>
-                            {el.nombre} -
-                            {el.plataforma}                
-                          </Card.Text>
-                         
-                           <Button className='ps-2  '   variant="danger"
-                             onClick={
-                               () => eliminarPeli(el.id)}
-                           >
-                      
-                             Eliminar
-                           </Button>
-                        </div>
-                       )
-                      })
-                     
-                      
-                     
-                      : "nada"
-                    }   
+               
+                      return (
+                      <div className="d-flex justify-content-between">
+                        <Card.Text  className='ele-list' key={index}>
+                          {el.nombre} -
+                          {el.plataforma}                
+                        </Card.Text>
+                        
+                          <Button className='ps-2  '   variant="danger"
+                            onClick={
+                              () => eliminarPeli(el.id)}
+                          >
+                    
+                            Eliminar
+                          </Button>
+                      </div>
+                      )
+                    })       
+                    : "nada"
+                  }   
               
           
               </Card.Body>
@@ -234,10 +242,16 @@ function App() {
             <p className='peli-elegida'>
           
               {
-                numRan?arrpelis[numRan]['nombre']:
-                <span>nada</span>
+                numRan ?
+               
+                  `${arrpelis[numRan]['nombre']} 
+                  -   ${arrpelis[numRan]['plataforma']}`
               
               
+            
+              
+                    :
+                <span>nada</span>              
               }
             </p>
             
