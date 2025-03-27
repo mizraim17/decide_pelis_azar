@@ -16,7 +16,7 @@ function App() {
   const [error, setError] = useState(null); 
 	const [nomPeli, setnomPeli] = useState("");
 	const [plataforma, setPlataforma] = useState("");
-	const [numRan, setnumRan] = useState("");
+	const [numRan, setnumRan] = useState('');
   const [arrpelis, setArrpelis] = useState([]);
  
 
@@ -125,12 +125,11 @@ function App() {
  
     setnumRan(  Math.floor(Math.random() * (arrpelis.length)))
       
-    console.log( "tamaño array" ,arrpelis.length)
+    // console.log( "tamaño array" ,arrpelis.length)
     console.log( "numero aleatorio" ,numRan)
     
-    console.log(' arrpelis',arrpelis);
-    console.log('elemento aleatorio',arrpelis[numRan]['nombre']);
-    
+    console.log(' arrpelis', arrpelis);
+   
   };
   
     if (cargando) {
@@ -150,7 +149,7 @@ function App() {
           <Row>
           
             <Col  className=' ' xs sm md={4} lg={4} xl={4}  >
-            <h2>Agregar película</h2>
+            <h2 className='tit'>Agregar película</h2>
             
             <Form onSubmit={handleSubmit}>
               <Form.Group className="mb-3" controlId="nomPeli">
@@ -175,44 +174,49 @@ function App() {
       
             </Col>
           
-          <Col xs sm md={8} lg={8} xl={8} >
+            <Col xs sm md={8} lg={8} xl={8} >
             
             <Card  border="warning" style={{ width: '33rem' }}>
               <Card.Body>
                 <Card.Title >
-                  <span
+                  <h2
                     className='tit-list'>
-                      Lista de pelis
-                  </span>
+                      Lista de sugerencia pelis
+                  </h2>
                 </Card.Title>
+              <div className="d-flex row ">
+                  
+                {
+                  arrpelis != "No hay resultados. </br> "
+                  && arrpelis != []
+                  ?                     
+                  arrpelis.map((el,index) => {
               
-                  {
-                    arrpelis != "No hay resultados. </br> "
-                    && arrpelis != []
-                    ?                     
-                      arrpelis.map((el,index) => {
+                    return (
+                      <div className='d-flex justify-content-between' key={index}>
+                        <div  >
+                          <Card.Text  className='ele-list' >
+                            {el.nombre} -
+                            {el.plataforma}                
+                          </Card.Text>
+                        </div>
 
-               
-                      return (
-                      <div className="d-flex justify-content-between">
-                        <Card.Text  className='ele-list' key={index}>
-                          {el.nombre} -
-                          {el.plataforma}                
-                        </Card.Text>
-                        
+                         <div >
                           <Button className='ps-2  '   variant="danger"
                             onClick={
                               () => eliminarPeli(el.id)}
                           >
                     
                             Eliminar
-                          </Button>
+                          </Button>                        
+                        </div>
                       </div>
-                      )
-                    })       
+                    )
+                  })       
                     : "nada"
-                  }   
-              
+                }
+                    
+              </div>
           
               </Card.Body>
             </Card>
@@ -228,7 +232,7 @@ function App() {
 				<Row    >
 					             
           <Col  xs sm md={4} lg={4} xl={4} xxl={4} >
-            <h2>Elegir al azar</h2>
+            <h2 className='tit'>Elegir al azar</h2>
             
             <Button variant="success" onClick={randomPeli}  >
               aleatorio
@@ -237,22 +241,33 @@ function App() {
 
 
           <Col xs sm md={8} lg={8} xl={8} xxl={4}  >
-            <h2 className='mt-2'>Pelicula elegida  </h2>   
+            <h2 className='tit-fin mt-2'>
+              Pelicula elegida
+            </h2>   
 
           
             <p className='peli-elegida'>
-          
+
+   
               {
-                numRan ?
-               
-                  `${arrpelis[numRan]['nombre']} 
-                  -   ${arrpelis[numRan]['plataforma']}`
+
+              numRan!=''&&  numRan!='nada'
+                  ?
+                   console.log("peli elegida", arrpelis[numRan]['nombre'])
+                  :    console.log("numRan vacio", numRan)
+             
+             
+            }
               
-              
-            
-              
-                    :
-                <span>nada</span>              
+               {
+                
+                 numRan!==''
+                  ?
+                    `${arrpelis[numRan]['nombre']} 
+                    -  ${arrpelis[numRan]['plataforma']}`
+          
+                  :
+                    <span>{numRan}</span>              
               }
             </p>
             

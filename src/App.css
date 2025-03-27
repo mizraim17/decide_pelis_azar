@@ -19,9 +19,8 @@
 }
 
 .tit-list {
-	color: #b7b1f2;
+	color: #a0c878;
 	font-weight: 700;
-	font-size: 22px;
 }
 
 .ele-list {
@@ -33,11 +32,21 @@
 .peli-elegida {
 	font-size: 33px;
 	font-weight: bold;
-	color: #a0c878;
+	color: #f8ed8c;
+	font-style: italic;
+	text-decoration: underline;
 }
 
 h1.title {
-	color: #ddeb9d;
+	color: #fdfbee;
+}
+
+h2.tit {
+	color: #a0c878;
+}
+
+h2.tit-fin {
+	color: #ff2df1;
 }
 
 @keyframes logo-spin {
