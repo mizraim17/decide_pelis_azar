@@ -4,7 +4,6 @@ import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button'; 
 import './App.css'
 
@@ -117,6 +116,8 @@ function App() {
         console.log("Success:", response)
         })
          
+    setnomPeli('')
+    setPlataforma('')
   }
   
   const randomPeli = () => {
