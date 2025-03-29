@@ -217,7 +217,7 @@ function App() {
         </Container>
         
         	 
-      <Container fluid>
+      <Container fluid className='mt-2'>
 				<Row    >
 					             
           <Col   xs sm md={4} lg={4} xl={4} xxl={4} >
