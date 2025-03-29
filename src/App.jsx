@@ -132,30 +132,31 @@ function App() {
   return (
 
     <>
-      
-        <Container fluid>
-						<h1 className='title pb-5'  >Elegir una pelicula al azar</h1>
-          <Row>
+   
+      <Container  >
+        <h1 className='title pb-5'  >Elegir una pelicula al azar</h1>
+        
+        <Row>
           
-            <Col  className=' ' xs sm md={4} lg={4} xl={4}  >
+            <Col    xs={12} sm={12} md={4} lg={4} xl={4}  >
             <h2 className='tit'>Agregar película</h2>
             
-            <Form onSubmit={handleSubmit}>
+            <Form className='mt-3' onSubmit={handleSubmit}>
               <Form.Group className="mb-3" controlId="nomPeli">
             
                 <Form.Control type="text" placeholder="
                 Nombre de la peli"   onChange={(evento) => setnomPeli(evento.target.value)} value={nomPeli} />
-                 
+                
               </Form.Group>
 
                 <Form.Group className="mb-3" controlId="plataforma">
                 
                 <Form.Control type="text" placeholder="
                   Plataforma  "  onChange={(evento) => setPlataforma(evento.target.value)} value={plataforma} />
-                 
+                
                 </Form.Group>
 
-             
+            
             <Button onClick={agregarPeli} >
                 Agregar peli   
             </Button>
@@ -163,9 +164,9 @@ function App() {
       
             </Col>
           
-            <Col xs sm md={8} lg={8} xl={8} >
+            <Col className='mar-temp' xs={12} sm={12} md={8} lg={8} xl={8} >
             
-            <Card  border="warning" style={{ width: '33rem' }}>
+            <Card  border="danger"  >
               <Card.Body>
                 <Card.Title >
                   <h2
@@ -182,7 +183,7 @@ function App() {
                   arrpelis.map((el,index) => {
               
                     return (
-                      <div className='d-flex justify-content-between' key={index}>
+                      <div className='tabla d-flex justify-content-between' key={index}>
                         <div  >
                           <Card.Text  className='ele-list' >
                             {el.nombre} -
@@ -190,7 +191,7 @@ function App() {
                           </Card.Text>
                         </div>
 
-                         <div >
+                        <div >
                           <Button className='ps-2  '   variant="danger"
                             onClick={
                               () => eliminarPeli(el.id)}
@@ -212,15 +213,15 @@ function App() {
               
             </Col>
               
-          </Row>              
-                
-        </Container>
+        </Row>              
+              
+      </Container>
         
         	 
-      <Container fluid className='mt-2'>
+      <Container fluid   className='mt-2'>
 				<Row    >
 					             
-          <Col   xs sm md={4} lg={4} xl={4} xxl={4} >
+          <Col   xs={12} sm={12} md={4} lg={4} xl={4} xxl={4} >
             <h2 className='tit'>Peli al azar</h2>
             
             <Button variant="success" onClick={randomPeli}  >
@@ -229,23 +230,13 @@ function App() {
           </Col>
 
 
-          <Col className='cuadro' xs sm md={8} lg={8} xl={8} xxl={4}  >
+          <Col className='cuadro' xs={12} sm={12} md={8} lg={8} xl={8} xxl={4}  >
             <p className='tit-fin mt-2 text-center'>
               Pelicula elegida
                
             </p>   
        
             <p className='peli-elegida'>
-
-              {
-
-              numRan!=''&&  numRan!='nada'
-                  ?
-                   console.log("peli elegida", arrpelis[numRan]['nombre'])
-                  :    console.log("numRan vacio", numRan)
-             
-             
-            }
               
                {
                 

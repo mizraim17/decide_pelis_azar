@@ -29,6 +29,10 @@
 	color: #fdb7ea;
 }
 
+.ele-list {
+	font-size: 14px;
+}
+
 .peli-elegida {
 	font-size: 33px;
 	font-weight: bold;
@@ -67,6 +71,19 @@ h2.tit-fin {
 	}
 	to {
 		transform: rotate(360deg);
+	}
+}
+
+@media (min-width: 320px) {
+	p.tit-fin {
+		font-size: 22px;
+	}
+
+	.tabla {
+		flex-direction: column;
+	}
+	.mar-temp {
+		margin-top: 50px;
 	}
 }
 
