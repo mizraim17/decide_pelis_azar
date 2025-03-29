@@ -9,40 +9,44 @@ import './App.css'
 
 
 function App() {
- 
-  
-	  
+ 	  
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null); 
 	const [nomPeli, setnomPeli] = useState("");
 	const [plataforma, setPlataforma] = useState("");
 	const [numRan, setnumRan] = useState('');
   const [arrpelis, setArrpelis] = useState([]);
- 
-
 
   const handleSubmit = (evento) => {
     evento.preventDefault();
     
   };
   
-   useEffect(() => {
+  useEffect(() => {
+ 
       const obtenerDatos = async () => {
         try {
+          let arregloDeObjetos 
           const respuesta = await fetch(`https://wepapp-angular-default-rtdb.firebaseio.com/pelis.json`)
           
-          const objetoDeObjetos = await respuesta.json() ;
-
-          const arregloDeObjetos = Object.keys(objetoDeObjetos).map((id) => ({
+          const objetoDeObjetos = await respuesta.json();
+ 
+          objetoDeObjetos !== null
+            ?  arregloDeObjetos = Object.keys(objetoDeObjetos).map((id) => ({
             id,
             ...objetoDeObjetos[id],
-          }));
-
-          setArrpelis (arregloDeObjetos);
-          setCargando(false);
-
-         
+             }))
+            : console.log("es nuelllo");
           
+          console.log('objetoDeObjetos',objetoDeObjetos);
+          
+            
+          objetoDeObjetos
+            ?            setArrpelis(arregloDeObjetos)
+            :''
+        
+          setCargando(false);
+      
         } catch (error) {
           setError(error);
           setCargando(false);
@@ -74,11 +78,8 @@ function App() {
     const respuesta = await fetch(`https://wepapp-angular-default-rtdb.firebaseio.com/pelis/${id}.json`, {
       method: 'DELETE',
     });
-    if (respuesta.ok) {
-        
-      
-      console.log('Registro eliminado con éxito');
-              obtenerDatos()
+    if (respuesta.ok) {  
+      obtenerDatos()
     } else {
       console.error('Error al eliminar el registro');
     }
@@ -93,11 +94,7 @@ function App() {
     {
       nombre: ` ${nomPeli}`,
       plataforma:  `${plataforma}`
-      }
-    
-
-        console.log('data-----',data);
-    
+      }    
 
     fetch(`https://wepapp-angular-default-rtdb.firebaseio.com/pelis.json`, {
       method: "POST", // or 'PUT'
@@ -121,18 +118,10 @@ function App() {
   }
   
   const randomPeli = () => {
-       
- 
     setnumRan(  Math.floor(Math.random() * (arrpelis.length)))
-      
-    // console.log( "tamaño array" ,arrpelis.length)
-    console.log( "numero aleatorio" ,numRan)
-    
-    console.log(' arrpelis', arrpelis);
-   
   };
   
-    if (cargando) {
+  if (cargando) {
     return <p>Cargando...</p>;
   }
 
@@ -145,7 +134,7 @@ function App() {
     <>
       
         <Container fluid>
-						<h1 className='title pb-5'  >Elegir Peliculas al Azar</h1>
+						<h1 className='title pb-5'  >Elegir una pelicula al azar</h1>
           <Row>
           
             <Col  className=' ' xs sm md={4} lg={4} xl={4}  >
@@ -153,16 +142,16 @@ function App() {
             
             <Form onSubmit={handleSubmit}>
               <Form.Group className="mb-3" controlId="nomPeli">
-                <Form.Label>Pelicula</Form.Label>
+            
                 <Form.Control type="text" placeholder="
                 Nombre de la peli"   onChange={(evento) => setnomPeli(evento.target.value)} value={nomPeli} />
                  
               </Form.Group>
 
                 <Form.Group className="mb-3" controlId="plataforma">
-                <Form.Label>Plataforma</Form.Label>
+                
                 <Form.Control type="text" placeholder="
-                  plataforma  "  onChange={(evento) => setPlataforma(evento.target.value)} value={plataforma} />
+                  Plataforma  "  onChange={(evento) => setPlataforma(evento.target.value)} value={plataforma} />
                  
                 </Form.Group>
 
@@ -188,7 +177,7 @@ function App() {
                   
                 {
                   arrpelis != "No hay resultados. </br> "
-                  && arrpelis != []
+                  && arrpelis != [] 
                   ?                     
                   arrpelis.map((el,index) => {
               
@@ -231,8 +220,8 @@ function App() {
       <Container fluid>
 				<Row    >
 					             
-          <Col  xs sm md={4} lg={4} xl={4} xxl={4} >
-            <h2 className='tit'>Elegir al azar</h2>
+          <Col   xs sm md={4} lg={4} xl={4} xxl={4} >
+            <h2 className='tit'>Peli al azar</h2>
             
             <Button variant="success" onClick={randomPeli}  >
               aleatorio
@@ -240,15 +229,14 @@ function App() {
           </Col>
 
 
-          <Col xs sm md={8} lg={8} xl={8} xxl={4}  >
-            <h2 className='tit-fin mt-2'>
+          <Col className='cuadro' xs sm md={8} lg={8} xl={8} xxl={4}  >
+            <p className='tit-fin mt-2 text-center'>
               Pelicula elegida
-            </h2>   
-
-          
+               
+            </p>   
+       
             <p className='peli-elegida'>
 
-   
               {
 
               numRan!=''&&  numRan!='nada'

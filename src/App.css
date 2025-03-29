@@ -45,7 +45,19 @@ h2.tit {
 	color: #a0c878;
 }
 
+.cuadro {
+	border: 2px solid white;
+}
+
+p.tit-fin {
+	text-align: center !important;
+	color: #ff2df1;
+	font-weight: bold;
+	font-size: 28px;
+}
+
 h2.tit-fin {
+	text-align: center;
 	color: #ff2df1;
 }
 
