@@ -166,7 +166,7 @@ function App() {
           
             <Col className='mar-temp' xs={12} sm={12} md={8} lg={8} xl={8} >
             
-            <Card  border="danger"  >
+            <Card  border="danger"   >
               <Card.Body>
                 <Card.Title >
                   <h2
@@ -240,7 +240,7 @@ function App() {
               
                {
                 
-                 numRan!==''
+                 numRan!==''  
                   ?
                     `${arrpelis[numRan]['nombre']} 
                     -  ${arrpelis[numRan]['plataforma']}`
