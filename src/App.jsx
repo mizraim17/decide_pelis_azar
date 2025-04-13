@@ -144,8 +144,7 @@ function App() {
             <Form className='mt-3' onSubmit={handleSubmit}>
               <Form.Group className="mb-3" controlId="nomPeli">
             
-                <Form.Control type="text" placeholder="
-                Nombre de la peli"   onChange={(evento) => setnomPeli(evento.target.value)} value={nomPeli} />
+                <Form.Control type="text" placeholder="Nombre de la peli"   onChange={(evento) => setnomPeli(evento.target.value)} value={nomPeli} />
                 
               </Form.Group>
 
@@ -158,8 +157,8 @@ function App() {
                   </option>
                   <option value="Netflix">
                     Netflix</option>
-                  <option value="HBO">
-                    HBO
+                  <option value="MAX">
+                    MAX
                   </option>
                   <option value="Apple">
                     Apple TV
@@ -207,12 +206,33 @@ function App() {
                         <div  >
                           <Card.Text  className='ele-list' >
                             {el.nombre} -
-                            {el.plataforma}                
+                         
+                            
+                             
+                            { el.plataforma == 'Netflix' ?
+                              <img key={index} className='icons' src="netflix.png" alt="netflix" />
+                              :
+                              el.plataforma == 'MAX'?
+                              < img key={index} className='icons' src="max.png" alt="MAX" />
+                                :
+                                   el.plataforma == 'Prime'?
+                                  < img key={index} className='icons' src="prime.png" alt="Prime" />
+                                  : el.plataforma == 'Disney'
+                                  ?
+                                    < img key={index} className='icons' src="disney.jpeg" alt="netflix" />
+                                    :el.plataforma == 'Apple'
+                                    ?
+                                      < img key={index} className='icons' src="apple.png" alt="Apple" />
+                                      :''
+                            }
+                         
+                           
+                         
                           </Card.Text>
                         </div>
 
                         <div >
-                          <Button className='ps-2  '   variant="danger"
+                          <Button className='ps-2 mb-3  '   variant="danger"
                             onClick={
                               () => eliminarPeli(el.id)}
                           >
