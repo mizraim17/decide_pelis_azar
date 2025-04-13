@@ -205,7 +205,7 @@ function App() {
                       <div className='tabla d-flex justify-content-between' key={index}>
                         <div  >
                           <Card.Text  className='ele-list' >
-                            {el.nombre} -
+                           
                          
                             
                              
@@ -226,6 +226,7 @@ function App() {
                                       :''
                             }
                          
+                            - {el.nombre} 
                            
                          
                           </Card.Text>
