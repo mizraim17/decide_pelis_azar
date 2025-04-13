@@ -149,12 +149,32 @@ function App() {
                 
               </Form.Group>
 
-                <Form.Group className="mb-3" controlId="plataforma">
+              <Form.Group className="mb-3" controlId="plataforma">
                 
-                <Form.Control type="text" placeholder="
-                  Plataforma  "  onChange={(evento) => setPlataforma(evento.target.value)} value={plataforma} />
+
+                 <Form.Select aria-label="Default select example" onChange={(evento) => setPlataforma(evento.target.value)}   >
+                    <option selected>
+                      Plataforma
+                  </option>
+                  <option value="Netflix">
+                    Netflix</option>
+                  <option value="HBO">
+                    HBO
+                  </option>
+                  <option value="Apple">
+                    Apple TV
+                  </option>
+                  <option value="Disney">
+                    Disney
+                  </option>
+                    <option value="Prime">
+                    Prime
+                  </option>
+                   </Form.Select>
                 
-                </Form.Group>
+               
+                
+              </Form.Group> 
 
             
             <Button onClick={agregarPeli} >
