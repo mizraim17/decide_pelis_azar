@@ -210,19 +210,19 @@ function App() {
                             
                              
                             { el.plataforma == 'Netflix' ?
-                              <img key={index} className='icons' src="netflix.png" alt="netflix" />
+                              <img key={index} className='icons' src="netflix.avif" alt="netflix" />
                               :
                               el.plataforma == 'MAX'?
-                              < img key={index} className='icons' src="max.png" alt="MAX" />
+                              < img key={index} className='icons' src="max.avif" alt="MAX" />
                                 :
                                    el.plataforma == 'Prime'?
-                                  < img key={index} className='icons' src="prime.png" alt="Prime" />
+                                  < img key={index} className='icons' src="prime.avif" alt="Prime" />
                                   : el.plataforma == 'Disney'
                                   ?
-                                    < img key={index} className='icons' src="disney.jpeg" alt="netflix" />
+                                    < img key={index} className='icons' src="disney.avif" alt="netflix" />
                                     :el.plataforma == 'Apple'
                                     ?
-                                      < img key={index} className='icons' src="apple.png" alt="Apple" />
+                                      < img key={index} className='icons' src="apple.avif" alt="Apple" />
                                       :''
                             }
                          
@@ -232,8 +232,8 @@ function App() {
                           </Card.Text>
                         </div>
 
-                        <div >
-                          <Button className='ps-2 mb-3  '   variant="danger"
+                        <div className='' >
+                          <Button className=' mb-3 mt-2  '   variant="danger"
                             onClick={
                               () => eliminarPeli(el.id)}
                           >
