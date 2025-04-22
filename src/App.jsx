@@ -202,13 +202,10 @@ function App() {
                   arrpelis.map((el,index) => {
               
                     return (
-                      <div className='tabla d-flex justify-content-between' key={index}>
-                        <div  >
+                      <div className='col-12   col-md-6 col-lg-6 d-flex justify-content-start align-items-center  ' key={index}>
+                        <div  className='d-flex justify-content-start' >
                           <Card.Text  className='ele-list' >
-                           
-                         
-                            
-                             
+            
                             { el.plataforma == 'Netflix' ?
                               <img key={index} className='icons' src="netflix.avif" alt="netflix" />
                               :
@@ -232,8 +229,8 @@ function App() {
                           </Card.Text>
                         </div>
 
-                        <div className='' >
-                          <Button className=' mb-3 mt-2  '   variant="danger"
+                        <div className=' d-flex' >
+                          <Button className='ms-2 mb-3 mt-2  '   variant="danger"
                             onClick={
                               () => eliminarPeli(el.id)}
                           >

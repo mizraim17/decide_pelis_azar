@@ -67,6 +67,7 @@ h2.tit-fin {
 
 .icons {
 	max-width: 70px;
+	padding-right: 5px;
 }
 
 @keyframes logo-spin {
