@@ -8,6 +8,9 @@ import Button from 'react-bootstrap/Button';
 import './App.css'
 
 
+import { AiOutlineClose } from 'react-icons/ai';
+
+
 function App() {
  	  
   const [cargando, setCargando] = useState(true);
@@ -235,7 +238,7 @@ function App() {
                               () => eliminarPeli(el.id)}
                           >
                     
-                            Eliminar
+                            <AiOutlineClose />
                           </Button>                        
                         </div>
                       </div>
