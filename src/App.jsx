@@ -16,7 +16,7 @@ function App() {
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null); 
 	const [nomPeli, setnomPeli] = useState("");
-	const [plataforma, setPlataforma] = useState("");
+	const [plataforma, setPlataforma] = useState('');
 	const [numRan, setnumRan] = useState('');
   const [arrpelis, setArrpelis] = useState([]);
 
@@ -154,8 +154,8 @@ function App() {
               <Form.Group className="mb-3" controlId="plataforma">
                 
 
-                 <Form.Select aria-label="Default select example" onChange={(evento) => setPlataforma(evento.target.value)}   >
-                    <option selected>
+                 <Form.Select aria-label="Default select example"    value={plataforma} onChange={(evento) => setPlataforma(evento.target.value)}   >
+                    <option value="" selected>
                       Plataforma
                   </option>
                   <option value="Netflix">
